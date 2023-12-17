@@ -100,26 +100,26 @@ public class AddressBookService_Tests : IDisposable
         // Add a contact
         var contactToAdd = new AddressBookContact
         {
-            FirstName = "Bob",
-            LastName = "Johnson",
+            FirstName = "test",
+            LastName = "test",
             PhoneNumber = "555555555",
-            Email = "bob.johnson@example.com",
-            Address = "789 Pine St"
+            Email = "test@example.com",
+            Address = "testVa"
         };
         addressBookService.AddContact(contactToAdd);
 
         // Act
-        using (StringWriter sw = new StringWriter())
+        using (StringWriter sw = new())
         {
             Console.SetOut(sw);
-            addressBookService.DisplayContactDetails("bob.johnson@example.com");
+            addressBookService.DisplayContactDetails("test@example.com");
 
             // Assert
             var output = sw.ToString().Trim();
-            Assert.Contains("Contact Details for Bob Johnson:", output);
-            Assert.Contains("Email: bob.johnson@example.com", output);
+            Assert.Contains("Contact Details for test test:", output);
+            Assert.Contains("Email: test@example.com", output);
             Assert.Contains("Phone: 555555555", output);
-            Assert.Contains("Address: 789 Pine St", output);
+            Assert.Contains("Address: testVa", output);
         }
     }
     // Dispose method for cleanup after tests
